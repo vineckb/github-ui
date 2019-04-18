@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <IssueListItem
+    <ListItem
       v-for="item in issues"
       :key="item.id"
       :issue="item" />
@@ -8,16 +8,16 @@
 </template>
 
 <script>
-import IssueListItem from '@/components/IssueListItem';
+import ListItem from './ListItem';
 import { mapState } from 'vuex';
 
 export default {
-  components: { IssueListItem },
+  components: { ListItem },
 
   computed: mapState(['issues']),
 
   created() {
     this.$store.dispatch('fetchIssues');
-  },
+  }
 };
 </script>

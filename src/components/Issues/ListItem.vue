@@ -4,15 +4,15 @@
       {{issue.title}} - {{issue.locked}}
     </a>
 
-    <LockIssueButton :issue="issue" />
+    <LockButton :issue="issue" />
   </li>
 </template>
 
 <script>
-import LockIssueButton from '@/components/LockIssueButton';
+import LockButton from './LockButton';
 
 export default {
-  components: { LockIssueButton },
+  components: { LockButton },
 
   props: {
     issue: {

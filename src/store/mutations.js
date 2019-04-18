@@ -1,3 +1,7 @@
+export function loading(state, loading) {
+  state.loading = !!loading;
+}
+
 export function setUsername(state, username) {
   state.username = username;
 }

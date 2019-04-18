@@ -1,20 +1,27 @@
 <template>
   <div id="app">
-    <LoginButton />
+    <Header />
+
     <router-view/>
   </div>
 </template>
 
 <script>
-import LoginButton from '@/components/LoginButton';
+import Header from '@/components/Header';
 
 export default {
-  components: { LoginButton },
+  components: { Header },
 
   created () {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.$store.commit('setToken', token);
+    this.loadAuth();
+  },
+
+  methods: {
+    loadAuth() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.$store.commit('setToken', token);
+      }
     }
   },
 
