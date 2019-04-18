@@ -1,8 +1,35 @@
 <template>
   <div id="app">
+    <LoginButton />
     <router-view/>
   </div>
 </template>
+
+<script>
+import LoginButton from '@/components/LoginButton';
+
+export default {
+  components: { LoginButton },
+
+  created () {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.$store.commit('setToken', token);
+    }
+  },
+
+  watch: {
+    '$route.query.code': function(code) {
+      if (code) {
+        this.$store.dispatch('auth', code).then(() => {
+          this.$router.replace({ query: {} })
+        })
+      }
+    }
+  }
+}
+</script>
+
 <style lang="stylus">
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
