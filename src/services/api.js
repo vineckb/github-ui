@@ -23,7 +23,7 @@ const urlEncodedToObject = data => {
 };
 
 export default {
-  authorizeUrl: `https://github.com/login/oauth/authorize?client_id=${clientId}`,
+  authorizeUrl: `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo`,
 
   fetchIssues(username, repository) {
     const url = `/repos/${username}/${repository}/issues`;
@@ -36,7 +36,24 @@ export default {
 
   lockIssue(username, repository, number) {
     const url = `/repos/${username}/${repository}/issues/${number}/lock`;
-    return github.put(url);
+    const token = localStorage.getItem('token');
+
+    return github.put(url, null, {
+      headers: {
+        'Authorization': `token ${token}`
+      }
+    });
+  },
+
+  unlockIssue(username, repository, number) {
+    const url = `/repos/${username}/${repository}/issues/${number}/lock`;
+    const token = localStorage.getItem('token');
+
+    return github.delete(url, {
+      headers: {
+        'Authorization': `token ${token}`
+      }
+    });
   },
 
   auth(code) {
