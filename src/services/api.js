@@ -34,6 +34,15 @@ export default {
     return github.get(`/repos/${username}/${repository}/issues/${number}`);
   },
 
+  createIssue({ username, repository, data }) {
+    const token = localStorage.getItem('token');
+    return github.post(`/repos/${username}/${repository}/issues`, data, {
+      headers: {
+        'Authorization': `token ${token}`
+      }
+    });
+  },
+
   lockIssue(username, repository, number) {
     const url = `/repos/${username}/${repository}/issues/${number}/lock`;
     const token = localStorage.getItem('token');

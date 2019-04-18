@@ -11,9 +11,14 @@ export async function fetchIssues({ state, commit }) {
 }
 
 export async function fetchIssue({ state, commit }, number) {
-  const url = `/repos//issues/${number}`;
-  const { data } = await api.fetchIssue(state.username, state.repository);
+  const { data } = await api.fetchIssue(state.username, state.repository, number);
   commit('setIssue', data);
+}
+
+export async function createIssue({ state, commit }, { title, body }) {
+  const { username, repository } = state;
+  const { data } = await api.createIssue({ username, repository, data: { title, body } })
+  return data;
 }
 
 export async function lockIssue({ state, commit }, number) {

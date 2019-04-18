@@ -10,12 +10,17 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import('./views/Index'),
+      component: () => import('./pages/IssuesList'),
     },
     {
       path: '/issue/:number',
-      name: 'issue',
-      component: () => import('./views/Issue'),
+      name: 'issue-details',
+      component: () => import('./pages/IssueDetails'),
+    },
+    {
+      path: '/new',
+      name: 'create-issue',
+      component: () => import('./pages/CreateIssue'),
     }
   ],
 });
