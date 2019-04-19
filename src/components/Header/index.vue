@@ -1,27 +1,27 @@
 <template>
   <div :class="$style.header">
     <RepositorySelector />
-
-    <LoginButton v-if="!token" />
-
-    <a v-if="token" href="/new">Create issue</a>
+    <CreateIssueButton />
+    <LogoutButton />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import RepositorySelector from './RepositorySelector';
-import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import CreateIssueButton from './CreateIssueButton';
 
 export default {
-  components: { LoginButton, RepositorySelector },
-
-  computed: mapState(['token'])
+  components: { RepositorySelector, LogoutButton, CreateIssueButton }
 }
 </script>
 
 <style lang="stylus" module>
 .header
   display flex
-  justify-content space-around
+  justify-content space-between
+  align-items center
+  max-width 700px
+  margin 0 auto
+  padding 20px
 </style>

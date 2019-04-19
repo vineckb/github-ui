@@ -1,7 +1,12 @@
 <template>
-  <button @click="toggleLock()">
-    <span v-if="loading">...</span>
-    <span v-if="!loading">{{ !issue.locked ? 'Lock' : 'Unlock' }}</span>
+  <button :class="$style.button" @click="toggleLock">
+    <vue-material-icon :name="issue.locked ? 'vpn_key' : 'lock'" :class="$style.icon" />
+
+    <span :class="[$style.buttonText]" v-if="loading">...</span>
+
+    <span :class="$style.buttonText" v-if="!loading">
+      {{ issue.locked ? 'Unlock' : 'Lock' }}
+    </span>
   </button>
 </template>
 
@@ -35,3 +40,23 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" module>
+.button
+  background none
+  border 1px solid #ccc
+  border-radius 5px
+  cursor pointer
+  padding 5px 20px
+  width 120px
+  display flex
+  align-items center
+  height 36px
+
+.loading
+  justify-content center
+
+.buttonText
+  margin-left 10px
+  text-align center
+</style>

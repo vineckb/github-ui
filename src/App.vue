@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header v-if="logged" />
 
     <router-view/>
   </div>
@@ -11,6 +11,12 @@ import Header from '@/components/Header';
 
 export default {
   components: { Header },
+
+  computed: {
+    logged: function () {
+      return !!this.$store.state.token
+    }
+  },
 
   created () {
     this.loadAuth();
@@ -23,21 +29,16 @@ export default {
         this.$store.commit('setToken', token);
       }
     }
-  },
-
-  watch: {
-    '$route.query.code': function(code) {
-      if (code) {
-        this.$store.dispatch('auth', code).then(() => {
-          this.$router.replace({ query: {} })
-        })
-      }
-    }
   }
 }
 </script>
 
 <style lang="stylus">
+*
+  padding 0
+  margin 0
+  box-sizing border-box
+
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased

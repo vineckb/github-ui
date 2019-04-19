@@ -1,0 +1,33 @@
+<template>
+  <form @submit.prevent="submit" :class="$style.form">
+    <input type="text" v-model="title" placeholder="Title">
+    <textarea v-model="body" placeholder="Leave a comment" />
+    <button type="submit">Submit new issue</button>
+  </form>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      title: '',
+      body: ''
+    }
+  },
+
+  methods: {
+    submit() {
+      const { title, body } = this;
+      this.$store.dispatch('createIssue', { title, body }).then(({ number }) => {
+        this.$router.push(`/issue/${number}`)
+      });
+    }
+  }
+}
+</script>
+
+<style lang="stylus" module>
+.form
+  display flex
+  flex-direction column
+</style>

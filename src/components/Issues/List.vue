@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul :class="$style.list">
     <ListItem
       v-for="item in issues"
       :key="item.id"
@@ -21,3 +21,9 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" module>
+.list
+  display flex
+  flex-direction column
+</style>

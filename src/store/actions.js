@@ -22,7 +22,7 @@ export async function createIssue({ state, commit }, { title, body }) {
 }
 
 export async function lockIssue({ state, commit }, number) {
-  await api.lockIssue(state.username, state.repository, number)
+  await api.lockIssue(state.username, state.repository, number);
   commit('lockIssue', number);
 }
 
@@ -35,6 +35,11 @@ export async function auth({ commit }, code) {
   const data = await api.auth(code);
   localStorage.setItem('token', data['access_token']);
   commit('setToken', data['access_token']);
+}
+
+export function logout({ commit }) {
+  localStorage.setItem('token', '');
+  commit('setToken', '');
 }
 
 export function selectRepository({ commit, dispatch }, { username, repository }) {

@@ -11,8 +11,8 @@ export function setRepository(state, repository) {
 }
 
 export function setIssues(state, issues) {
-  state.issues = issues.map(({ title, number, state, locked }) => ({
-    title, number, state, locked
+  state.issues = issues.map(({ title, number, state, locked, created_at }) => ({
+    title, number, state, locked, created_at
   }));
 }
 
