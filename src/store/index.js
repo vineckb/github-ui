@@ -16,6 +16,7 @@ export default new Vuex.Store({
       avatar: ''
     },
     repository: 'citartech-frontend',
+    repositories: [],
     issues: [],
     issue: {},
   },

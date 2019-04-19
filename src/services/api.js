@@ -76,5 +76,9 @@ export default {
 
   getUser() {
     return github.get('/user', oAuthConfig())
+  },
+
+  getRepositories() {
+    return github.get('/user/repos', oAuthConfig())
   }
 }

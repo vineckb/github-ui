@@ -10,6 +10,10 @@ export function setUser(state, { name, login, avatar_url }) {
   }
 }
 
+export function setRepositories(state, repositories) {
+  state.repositories = repositories;
+}
+
 export function setRepository(state, repository) {
   state.repository = repository;
 }

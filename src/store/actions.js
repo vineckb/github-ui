@@ -40,9 +40,16 @@ export async function auth({ commit, dispatch }, code) {
   dispatch('loadUser')
 }
 
-export async function loadUser({ commit }) {
+export async function loadUser({ commit, dispatch }) {
   const { data } = await api.getUser();
   commit('setUser', data);
+
+  dispatch('loadRepositories');
+}
+
+export async function loadRepositories({ commit }) {
+  const { data } = await api.getRepositories();
+  commit('setRepositories', data);
 }
 
 export function logout({ commit }) {
@@ -50,8 +57,7 @@ export function logout({ commit }) {
   commit('setToken', '');
 }
 
-export function selectRepository({ commit, dispatch }, { username, repository }) {
-  commit('setUsername', username);
+export function selectRepository({ commit, dispatch }, repository) {
   commit('setRepository', repository);
   dispatch('fetchIssues');
 }

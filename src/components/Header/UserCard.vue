@@ -21,6 +21,8 @@ export default {
   display flex
   margin-right 20px
   align-items center
+  padding 20px
+  background #e8e8e8
 
 .image
   width 30px
