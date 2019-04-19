@@ -2,8 +2,12 @@ export function loading(state, loading) {
   state.loading = !!loading;
 }
 
-export function setUsername(state, username) {
-  state.username = username;
+export function setUser(state, { name, login, avatar_url }) {
+  state.user = {
+    name,
+    username: login,
+    avatar: avatar_url
+  }
 }
 
 export function setRepository(state, repository) {

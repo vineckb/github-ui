@@ -4,37 +4,45 @@ export async function fetchIssues({ state, commit }) {
   commit('loading', true);
 
   const { data } = await api
-    .fetchIssues(state.username, state.repository);
+    .fetchIssues(state.user.username, state.repository);
 
   commit('setIssues', data);
   commit('loading', false);
 }
 
 export async function fetchIssue({ state, commit }, number) {
-  const { data } = await api.fetchIssue(state.username, state.repository, number);
+  const { data } = await api.fetchIssue(state.user.username, state.repository, number);
   commit('setIssue', data);
 }
 
 export async function createIssue({ state, commit }, { title, body }) {
-  const { username, repository } = state;
-  const { data } = await api.createIssue({ username, repository, data: { title, body } })
+  const username = state.user.username;
+  const repository = state.repository;
+  const { data } = await api.createIssue(username, repository, { title, body })
   return data;
 }
 
 export async function lockIssue({ state, commit }, number) {
-  await api.lockIssue(state.username, state.repository, number);
+  await api.lockIssue(state.user.username, state.repository, number);
   commit('lockIssue', number);
 }
 
 export async function unlockIssue({ state, commit }, number) {
-  await api.unlockIssue(state.username, state.repository, number)
+  await api.unlockIssue(state.user.username, state.repository, number)
   commit('unlockIssue', number);
 }
 
-export async function auth({ commit }, code) {
+export async function auth({ commit, dispatch }, code) {
   const data = await api.auth(code);
   localStorage.setItem('token', data['access_token']);
   commit('setToken', data['access_token']);
+
+  dispatch('loadUser')
+}
+
+export async function loadUser({ commit }) {
+  const { data } = await api.getUser();
+  commit('setUser', data);
 }
 
 export function logout({ commit }) {

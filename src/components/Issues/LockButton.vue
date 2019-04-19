@@ -1,6 +1,6 @@
 <template>
   <button :class="$style.button" @click="toggleLock">
-    <vue-material-icon :name="issue.locked ? 'vpn_key' : 'lock'" :class="$style.icon" />
+    <vue-material-icon :name="issue.locked ? 'vpn_key' : 'lock'" :class="$style.icon" size="20" />
 
     <span :class="[$style.buttonText]" v-if="loading">...</span>
 
@@ -47,8 +47,8 @@ export default {
   border 1px solid #ccc
   border-radius 5px
   cursor pointer
-  padding 5px 20px
-  width 120px
+  padding 5px 10px
+  width 100px
   display flex
   align-items center
   height 36px

@@ -10,7 +10,11 @@ export default new Vuex.Store({
   state: {
     loading: false,
     token: '',
-    username: 'vineckb',
+    user: {
+      username: '',
+      name: '',
+      avatar: ''
+    },
     repository: 'citartech-frontend',
     issues: [],
     issue: {},

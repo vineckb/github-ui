@@ -8,6 +8,12 @@ const github = axios.create({
   baseURL: 'https://api.github.com'
 });
 
+const oAuthConfig = () => ({
+  headers: {
+    Authorization: `token ${localStorage.getItem('token')}`
+  }
+})
+
 // transform response because no working pass headers
 // input: access_token=:access_token&scope=&token_type=bearer
 // output: { access_token: '...', token_type: '...' }
@@ -34,35 +40,21 @@ export default {
     return github.get(`/repos/${username}/${repository}/issues/${number}`);
   },
 
-  createIssue({ username, repository, data }) {
+  createIssue(username, repository, data) {
     const token = localStorage.getItem('token');
-    return github.post(`/repos/${username}/${repository}/issues`, data, {
-      headers: {
-        'Authorization': `token ${token}`
-      }
-    });
+    return github.post(`/repos/${username}/${repository}/issues`, data, oAuthConfig());
   },
 
   lockIssue(username, repository, number) {
     const url = `/repos/${username}/${repository}/issues/${number}/lock`;
-    const token = localStorage.getItem('token');
 
-    return github.put(url, null, {
-      headers: {
-        'Authorization': `token ${token}`
-      }
-    });
+    return github.put(url, null, oAuthConfig());
   },
 
   unlockIssue(username, repository, number) {
     const url = `/repos/${username}/${repository}/issues/${number}/lock`;
-    const token = localStorage.getItem('token');
 
-    return github.delete(url, {
-      headers: {
-        'Authorization': `token ${token}`
-      }
-    });
+    return github.delete(url, oAuthConfig());
   },
 
   auth(code) {
@@ -80,5 +72,9 @@ export default {
         }).catch(e => reject(e));
 
     });
+  },
+
+  getUser() {
+    return github.get('/user', oAuthConfig())
   }
 }

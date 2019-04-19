@@ -1,7 +1,9 @@
 <template>
   <form @submit.prevent="submit">
-    <input type="text" v-model="username" placeholder="username">
+    <UserCard />
+
     <input type="text" v-model="repository" placeholder="repository">
+
     <button type="submit">
       <vue-material-icon name="search" size="20" />
     </button>
@@ -9,20 +11,22 @@
 </template>
 
 <script>
-export default {
-  data () {
-    const { username, repository } = this.$store.state;
+import UserCard from './UserCard';
 
+export default {
+  components: { UserCard },
+
+  data () {
     return {
-      username, repository
+      repository: this.$store.state.repository
     }
   },
 
   methods: {
     submit() {
-      const { username, repository } = this;
+      const { repository } = this;
 
-      this.$store.dispatch('selectRepository', { username, repository })
+      this.$store.dispatch('selectRepository', { repository });
     }
   }
 }
