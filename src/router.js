@@ -30,17 +30,17 @@ const router = new Router({
       }
     },
     {
-      path: '/:repository/issues/:number',
-      name: 'issue-details',
-      component: () => import('./pages/Issue'),
+      path: '/:repository/issues/new',
+      name: 'create-issue',
+      component: () => import('./pages/IssueCreate'),
       meta: {
         requireAuth: true
       }
     },
     {
-      path: '/:repository/issues/new',
-      name: 'create-issue',
-      component: () => import('./pages/IssueCreate'),
+      path: '/:repository/issues/:number',
+      name: 'issue-details',
+      component: () => import('./pages/Issue'),
       meta: {
         requireAuth: true
       }

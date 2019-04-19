@@ -3,7 +3,7 @@
     <div :class="$style.wrapper">
       <UserCard />
       <RepositorySelector />
-      <CreateIssueButton v-if="reository" />
+      <CreateIssueButton v-if="!!repository" :repository="repository" />
       <LogoutButton />
     </div>
   </div>
@@ -20,13 +20,14 @@ export default {
 
   data() {
     return {
-      reository: this.$router.params
+      repository: this.$router.params
     }
   },
 
   watch: {
-    '$route.params': function(params) {
-      this.repository = params.repository;
+    '$route.params': function({ repository }) {
+      console.log(repository)
+      this.repository = repository;
     }
   }
 }

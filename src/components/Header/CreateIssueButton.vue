@@ -1,5 +1,5 @@
-<template>
-  <a :class="$style.button" href="issues/new">Create issue</a>
+<template functional>
+  <a :class="$style.button" :href="`/${props.repository}/issues/new`">Create issue</a>
 </template>
 
 <style lang="stylus" module>
