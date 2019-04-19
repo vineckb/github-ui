@@ -2,9 +2,7 @@
   <div>
     <div :class="$style.header">
       <h1 :class="$style.title">
-        <a href="/" :class="$style.titleLink">
-          <vue-material-icon name="arrow_back" />
-        </a>
+        <BackButton :href="`/${repository}/issues`" />
         <span :class="$style.titleText">{{ issue.title }}</span>
         <LockButton :issue="issue" :class="$style.button" />
       </h1>
@@ -17,15 +15,22 @@
 
 <script>
 import { mapState } from 'vuex';
+import BackButton from '@/components/BackButton';
 import LockButton from '@/components/Issues/LockButton';
 
 export default {
-  components: { LockButton },
+  components: { BackButton, LockButton },
 
-  computed: mapState(['issue', 'repository']),
+  data() {
+    const { repository, number } = this.$route.params;
+    return { repository, number };
+  },
+
+  computed: mapState(['issue']),
 
   created() {
-    this.$store.dispatch('fetchIssue', this.$route.params.number);
+    const { repository, number } = this;
+    this.$store.dispatch('fetchIssue', { number, repository });
   }
 }
 </script>
@@ -41,16 +46,6 @@ export default {
   align-items center
   width 100%
 
-.titleLink
-  display flex
-  align-items center
-  justify-content center
-  width 30px
-  height 30px
-  border 2px solid #999
-  border-radius 50%
-  color #999
-  text-decoration none
 
 .titleText
   margin-left 10px

@@ -16,23 +16,31 @@ const router = new Router({
     {
       path: '/',
       name: 'index',
-      component: () => import('./pages/IssuesList'),
+      component: () => import('./pages/Repositories'),
       meta: {
         requireAuth: true
       }
     },
     {
-      path: '/issue/:number',
+      path: '/:repository/issues',
+      name: 'issues-list',
+      component: () => import('./pages/Issues'),
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/:repository/issues/:number',
       name: 'issue-details',
-      component: () => import('./pages/IssueDetails'),
+      component: () => import('./pages/Issue'),
       meta: {
         requireAuth: true
       }
     },
     {
-      path: '/new',
+      path: '/:repository/issues/new',
       name: 'create-issue',
-      component: () => import('./pages/CreateIssue'),
+      component: () => import('./pages/IssueCreate'),
       meta: {
         requireAuth: true
       }

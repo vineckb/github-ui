@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.card">
+  <div :class="$style.card" @click="$router.push('/')">
     <img :src="user.avatar" :class="$style.image" alt="">
     <div :class="$style.heading">
       <p :class="$style.name">{{ user.name }}</p>
@@ -23,6 +23,7 @@ export default {
   align-items center
   padding 20px
   background #e8e8e8
+  cursor pointer
 
 .image
   width 30px

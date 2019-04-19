@@ -18,8 +18,10 @@ export default {
   methods: {
     submit() {
       const { title, body } = this;
-      this.$store.dispatch('createIssue', { title, body }).then(({ number }) => {
-        this.$router.push(`/issue/${number}`)
+      const { repository } = this.$route.params;
+
+      this.$store.dispatch('createIssue', { title, body, repository }).then(({ number }) => {
+        this.$router.push(`/${repository}/issues/${number}`)
       });
     }
   }

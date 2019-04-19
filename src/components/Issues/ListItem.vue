@@ -1,6 +1,6 @@
 <template>
   <li :class="$style.listItem">
-    <a :class="$style.header" :href="`/issue/${issue.number}`">
+    <a :class="$style.header" :href="`/${repository}/issues/${issue.number}`">
       <span :class="$style.title">{{issue.title}}</span>
       <span :class="$style.subtitle">Created {{createdAt(issue.created_at)}}</span>
     </a>
@@ -15,6 +15,12 @@ import moment from 'moment';
 
 export default {
   components: { LockButton },
+
+  data() {
+    return {
+      repository: this.$route.params.repository
+    }
+  },
 
   props: {
     issue: {

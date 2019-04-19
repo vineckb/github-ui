@@ -28,11 +28,13 @@ export default {
   methods: {
     async toggleLock() {
       this.loading = true;
+      const { repository } = this.$route.params;
+      const { number } = this.issue;
 
       if (!this.issue.locked) {
-        await this.$store.dispatch('lockIssue', this.issue.number);
+        await this.$store.dispatch('lockIssue', { number, repository });
       } else {
-        await this.$store.dispatch('unlockIssue', this.issue.number);
+        await this.$store.dispatch('unlockIssue', { number, repository });
       }
 
       this.loading  = false;

@@ -15,13 +15,14 @@ export default new Vuex.Store({
       name: '',
       avatar: ''
     },
-    repository: 'citartech-frontend',
+    repository: '',
     repositories: [],
     issues: [],
     issue: {},
   },
 
   mutations,
+
   actions,
 
   plugins: [new VuexPersistence().plugin]

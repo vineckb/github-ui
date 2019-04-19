@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import axios from 'axios';
 
-const clientId = '340bb03e7de2983aad44';
-const clientSecret = 'f246b355f7e7afa6168c21e4b01973b7ce5b5cd7';
+const clientId = '071225bb41f4ee451f9d';
+const clientSecret = '2c333b7e1ec1b019eec3a3d4678b5b5310bcdf97';
 
 const github = axios.create({
   baseURL: 'https://api.github.com'

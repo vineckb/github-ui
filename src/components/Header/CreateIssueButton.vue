@@ -1,5 +1,5 @@
 <template>
-  <a :class="$style.button" href="/new">Create issue</a>
+  <a :class="$style.button" href="issues/new">Create issue</a>
 </template>
 
 <style lang="stylus" module>

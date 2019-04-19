@@ -3,7 +3,7 @@
     <div :class="$style.wrapper">
       <UserCard />
       <RepositorySelector />
-      <CreateIssueButton />
+      <CreateIssueButton v-if="reository" />
       <LogoutButton />
     </div>
   </div>
@@ -16,7 +16,19 @@ import CreateIssueButton from './CreateIssueButton';
 import LogoutButton from './LogoutButton';
 
 export default {
-  components: { UserCard, RepositorySelector, CreateIssueButton, LogoutButton }
+  components: { UserCard, RepositorySelector, CreateIssueButton, LogoutButton },
+
+  data() {
+    return {
+      reository: this.$router.params
+    }
+  },
+
+  watch: {
+    '$route.params': function(params) {
+      this.repository = params.repository;
+    }
+  }
 }
 </script>
 

@@ -13,33 +13,37 @@
       <vue-material-icon name="search" size="20" />
     </button>
 
-    <ul :class="$style.suggestions" v-if="focus && suggestions.length">
-      <li
-        :class="$style.suggestionItem"
-        v-for="(suggestion, index) in suggestions"
-        :key="index"
-        @click="selectRepository(suggestion)">
-
-        {{ suggestion }}
-      </li>
-    </ul>
+    <RepositoriesList
+      :class="$style.suggestions"
+      v-if="focus && suggestions.length"
+      @select="selectRepository"
+      :repositories="suggestions" />
   </form>
 </template>
 
 <script>
+import RepositoriesList from '@/components/Repositories/List';
 
 export default {
+  components: { RepositoriesList },
+
   data () {
     return {
-      repository: this.$store.state.repository,
+      repository: this.$route.params.repository,
       suggestions: [],
       focus: false,
     }
   },
 
+  watch: {
+    '$route.params': function(params) {
+      this.repository = params.repository;
+    }
+  },
+
   methods: {
     submit() {
-      this.$store.dispatch('selectRepository', this.repository);
+      this.$router.go(`/${this.repository}/issues`);
       this.focus = false;
     },
 
@@ -54,8 +58,7 @@ export default {
       const regex = new RegExp(`(${repository})`, 'gi');
 
       this.suggestions = repositories
-        .map(repo => repo.name)
-        .filter(repo => !!repo.match(regex));
+        .filter(repo => !!repo.name.match(regex));
     },
 
     selectRepository(repository) {
@@ -96,14 +99,4 @@ export default {
   background white
   border 1px solid #b9b3b3
   border-radius 3px
-  list-style none
-
-.suggestionItem
-  color #666
-  text-align left
-  padding 5px 10px
-  cursor pointer
-
-  &:hover
-    background #e8e8e8
 </style>
