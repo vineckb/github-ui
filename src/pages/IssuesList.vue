@@ -14,13 +14,6 @@ export default {
 </script>
 
 <style lang="stylus" module>
-.wrapper
-  display flex
-  flex-direction column
-  max-width 700px
-  padding 20px
-  margin 0 auto
-
 .title
   margin 30px 0
 </style>

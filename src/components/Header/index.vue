@@ -23,7 +23,7 @@ export default {
 <style lang="stylus" module>
 .header
   background #fefefe
-  margin-bottom 1px solid #e6e4e4
+  border-bottom 1px solid #e6e4e4
 
 .wrapper
   display flex
