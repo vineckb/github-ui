@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import api from '@/services/api';
 
 Vue.use(Router);
 
@@ -50,7 +51,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireAuth)) {
-    if (!localStorage.getItem('token')) {
+    if (!api.auth.getToken()) {
       next({
         path: '/login'
       })

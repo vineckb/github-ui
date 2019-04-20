@@ -12,7 +12,7 @@ export default {
 
   methods: {
     click() {
-      this.$store.dispatch('logout');
+      this.$store.dispatch('auth/logout');
       this.$router.go();
     }
   }

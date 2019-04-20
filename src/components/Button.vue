@@ -32,10 +32,12 @@ export default {
 
   methods: {
     handleClick() {
-      if (this.href) {
-        this.$router.push(this.href);
+      if (!this.href) return this.$emit('click');
+
+      if (this.href.match(/^https?\:\/\//)) {
+        window.location = this.href;
       } else {
-        this.$emit('click');
+        this.$router.push(this.href);
       }
     }
   }

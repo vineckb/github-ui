@@ -1,29 +1,32 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as mutations from './mutations';
-import * as actions from './actions'
 import VuexPersistence from 'vuex-persist';
+import auth from './modules/auth';
+import issues from './modules/issues';
+import repositories from './modules/repositories';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     loading: 0,
-    token: '',
-    user: {
-      username: '',
-      name: '',
-      avatar: ''
-    },
-    repository: '',
-    repositories: [],
-    issues: [],
-    issue: {},
   },
 
-  mutations,
+  mutations: {
+    loading(state) {
+      state.loading++;
+    },
 
-  actions,
+    loaded(state) {
+      state.loading--;
+    },
+
+    resetLoading(state) {
+      state.loading = 0
+    }
+  },
+
+  modules: { auth, issues, repositories },
 
   plugins: [new VuexPersistence().plugin]
 });

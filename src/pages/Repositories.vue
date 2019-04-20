@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.wrapper">
     <h1 :class="$style.title">Repositories</h1>
-    <RepositoriesList :repositories="repositories" />
+    <RepositoriesList :repositories="repositories" v-if="repositories.length" />
   </div>
 </template>
 
@@ -12,7 +12,9 @@ import { mapState } from 'vuex';
 export default {
   components: { RepositoriesList },
 
-  computed: mapState(['repositories'])
+  computed: mapState({
+    repositories: state => state.repositories.list
+  })
 };
 </script>
 

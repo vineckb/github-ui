@@ -12,11 +12,13 @@ import IssuesList from '@/components/Issues/List.vue';
 export default {
   components: { IssuesList },
 
-  computed: mapState(['issues']),
+  computed: mapState({
+    issues: state => state.issues.list
+  }),
 
   mounted() {
     const repository = this.$route.params.repository;
-    this.$store.dispatch('fetchIssues', repository);
+    this.$store.dispatch('issues/fetchList', repository);
     this.issues;
   }
 };

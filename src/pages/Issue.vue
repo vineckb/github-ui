@@ -19,8 +19,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import Button from '@/components/Button';
 import LockButton from '@/components/Issues/LockButton';
+import Button from '@/components/Button';
 
 export default {
   components: { Button, LockButton },
@@ -30,11 +30,13 @@ export default {
     return { repository, number };
   },
 
-  computed: mapState(['issue']),
+  computed: mapState({
+    issue: state => state.issues.item
+  }),
 
   created() {
     const { repository, number } = this;
-    this.$store.dispatch('fetchIssue', { number, repository });
+    this.$store.dispatch('issues/fetchItem', { repository, number });
   }
 }
 </script>

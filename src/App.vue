@@ -19,7 +19,7 @@ export default {
 
   computed: {
     logged() {
-      return !!this.$store.state.token;
+      return !!this.$store.state.auth.token;
     },
 
     loading() {
@@ -29,16 +29,6 @@ export default {
 
   created () {
     this.$store.commit('resetLoading');
-    this.loadAuth();
-  },
-
-  methods: {
-    loadAuth() {
-      const token = localStorage.getItem('token');
-      if (token) {
-        this.$store.commit('setToken', token);
-      }
-    }
   }
 }
 </script>

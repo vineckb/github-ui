@@ -1,23 +1,28 @@
 <template>
   <div :class="$style.wrapper">
-    <a :class="$style.button" :href="authorizeUrl">Login with github</a>
+    <Button :href="authorizeUrl" primary>
+      Login with github
+    </Button>
   </div>
 </template>
 
 <script>
 import api from '@/services/api';
+import Button from '@/components/Button';
 
 export default {
+  components: { Button },
+
   data () {
     return {
-      authorizeUrl: api.authorizeUrl
+      authorizeUrl: api.auth.authorizeUrl
     }
   },
 
   created () {
     const code = this.$route.query.code;
     if (code) {
-      this.$store.dispatch('auth', code).then(() => {
+      this.$store.dispatch('auth/auth', code).then(() => {
         this.$router.push('/')
       })
     }
@@ -31,11 +36,4 @@ export default {
   justify-content center
   align-items center
   height 100vh
-
-.button
-  padding 10px 30px
-  border-radius 4px
-  text-decoration none
-  color inherit
-  border 1px solid #ccc
 </style>

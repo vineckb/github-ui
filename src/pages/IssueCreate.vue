@@ -2,7 +2,9 @@
   <form @submit.prevent="submit" :class="$style.form">
 
     <h1 :class="$style.title">
-      <BackButton :href="`/${repository}/issues`" />
+      <Button :href="`/${repository}/issues`" rounded>
+        <vue-material-icon name="arrow_back" />
+      </Button>
       <strong>Create issue</strong>
     </h1>
 
@@ -22,10 +24,10 @@
 </template>
 
 <script>
-import BackButton from '@/components/BackButton';
+import Button from '@/components/Button';
 
 export default {
-  components: { BackButton },
+  components: { Button },
 
   data () {
     return {
@@ -39,9 +41,11 @@ export default {
     submit() {
       const { title, body, repository } = this;
 
-      this.$store.dispatch('createIssue', { title, body, repository }).then(({ number }) => {
-        this.$router.push(`/${repository}/issues/${number}`)
-      });
+      this.$store
+        .dispatch('issues/create', { title, body, repository })
+        .then(({ number }) => {
+          this.$router.push(`/${repository}/issues/${number}`)
+        });
     }
   }
 }
