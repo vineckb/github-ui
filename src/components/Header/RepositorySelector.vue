@@ -1,5 +1,5 @@
 <template>
-  <form :class="$style.wrapper" @submit.prevent="submit">
+  <form :class="$style.wrapper" @submit.prevent="submit" v-click-outside="hideSuggestions">
 
     <input
       :class="$style.input"
@@ -22,10 +22,15 @@
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
 import RepositoriesList from '@/components/Repositories/List';
 
 export default {
   components: { RepositoriesList },
+
+  directives: {
+    ClickOutside
+  },
 
   data () {
     return {
@@ -44,7 +49,7 @@ export default {
   methods: {
     submit() {
       this.$router.go(`/${this.repository}/issues`);
-      this.focus = false;
+      this.hideSuggestions()
     },
 
     handleFocus() {
@@ -53,12 +58,14 @@ export default {
     },
 
     handleChange() {
-      const { repositories } = this.$store.state;
-      const { repository } = this;
-      const regex = new RegExp(`(${repository})`, 'gi');
+        const regex = new RegExp(`(${this.repository})`, 'gi');
 
-      this.suggestions = repositories
+      this.suggestions = this.$store.state.repositories.list
         .filter(repo => !!repo.name.match(regex));
+    },
+
+    hideSuggestions() {
+      this.focus = false;
     },
 
     selectRepository(repository) {
