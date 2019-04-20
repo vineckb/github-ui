@@ -1,5 +1,13 @@
-export function loading(state, loading) {
-  state.loading = !!loading;
+export function loading(state) {
+  state.loading++;
+}
+
+export function loaded(state) {
+  state.loading--;
+}
+
+export function resetLoading(state) {
+  state.loading = 0;
 }
 
 export function setUser(state, { name, login, avatar_url }) {

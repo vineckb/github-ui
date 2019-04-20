@@ -26,7 +26,6 @@ export default {
 
   watch: {
     '$route.params': function({ repository }) {
-      console.log(repository)
       this.repository = repository;
     }
   }

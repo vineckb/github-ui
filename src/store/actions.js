@@ -1,20 +1,20 @@
 import api from '@/services/api';
 
 export async function fetchIssues({ state, commit }, repository) {
-  commit('loading', true);
+  commit('loading');
 
   const { data } = await api
     .fetchIssues(state.user.username, repository);
 
   commit('setIssues', data);
-  commit('loading', false);
+  commit('loaded');
 }
 
 export async function fetchIssue({ state, commit }, { number, repository }) {
-  commit('loading', true);
+  commit('loading');
   const { data } = await api.fetchIssue(state.user.username, repository, number);
   commit('setIssue', data);
-  commit('loading', false);
+  commit('loaded');
 }
 
 export async function createIssue({ state, commit }, { title, body, repository }) {
@@ -34,13 +34,13 @@ export async function unlockIssue({ state, commit }, { number, repository }) {
 }
 
 export async function auth({ commit, dispatch }, code) {
-  commit('loading', true);
+  commit('loading');
   const data = await api.auth(code);
   localStorage.setItem('token', data['access_token']);
   commit('setToken', data['access_token']);
 
   dispatch('loadUser');
-  commit('loading', false);
+  commit('loaded');
 }
 
 export async function loadUser({ commit, dispatch }) {

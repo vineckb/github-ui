@@ -23,11 +23,12 @@ export default {
     },
 
     loading() {
-      return this.$store.state.loading;
+      return this.$store.state.loading > 0;
     }
   },
 
   created () {
+    this.$store.commit('resetLoading');
     this.loadAuth();
   },
 
@@ -68,6 +69,7 @@ export default {
   flex 1
   align-items center
   justify-content center
+  padding 100px 0
   font-size 100px
 
 .wrapper
