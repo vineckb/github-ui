@@ -1,11 +1,15 @@
 <template>
-  <button :class="$style.button" @click="click">
+  <Button @click="click">
     <vue-material-icon name="power_settings_new" />
-  </button>
+  </Button>
 </template>
 
 <script>
+import Button from '@/components/Button';
+
 export default {
+  components: { Button },
+
   methods: {
     click() {
       this.$store.dispatch('logout');

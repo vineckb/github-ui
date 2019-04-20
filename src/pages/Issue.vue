@@ -2,8 +2,12 @@
   <div>
     <div :class="$style.header">
       <h1 :class="$style.title">
-        <BackButton :href="`/${repository}/issues`" />
+        <Button :href="`/${repository}/issues`" rounded>
+          <vue-material-icon name="arrow_back" />
+        </Button>
+
         <span :class="$style.titleText">{{ issue.title }}</span>
+
         <LockButton :issue="issue" :class="$style.button" />
       </h1>
       <p :class="$style.subtitle"></p>
@@ -15,11 +19,11 @@
 
 <script>
 import { mapState } from 'vuex';
-import BackButton from '@/components/BackButton';
+import Button from '@/components/Button';
 import LockButton from '@/components/Issues/LockButton';
 
 export default {
-  components: { BackButton, LockButton },
+  components: { Button, LockButton },
 
   data() {
     const { repository, number } = this.$route.params;
