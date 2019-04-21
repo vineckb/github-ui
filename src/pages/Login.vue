@@ -20,7 +20,7 @@ export default {
   },
 
   created () {
-    const code = this.$route.query.code;
+    const { code } = this.$route.query;
     if (code) {
       this.$store.dispatch('auth/auth', code).then(() => {
         this.$router.push('/')

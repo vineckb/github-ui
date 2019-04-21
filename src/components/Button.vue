@@ -9,7 +9,7 @@
     :type="type"
     @click="handleClick">
 
-    <slot />
+    <slot>{{ text }}</slot>
   </button>
 </template>
 
@@ -19,6 +19,10 @@ export default {
     type: {
       type: String,
       default: 'button'
+    },
+
+    text: {
+      type: String
     },
 
     href: String,

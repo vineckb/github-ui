@@ -19,7 +19,7 @@
       v-model="body"
       placeholder="Leave a comment" />
 
-    <button :class="$style.button" type="submit">Submit issue</button>
+    <Button primary type="submit" text="Submit issue" />
   </form>
 </template>
 

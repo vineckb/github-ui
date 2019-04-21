@@ -9,10 +9,6 @@
       type="text"
       placeholder="repository">
 
-    <button :class="$style.button" type="submit">
-      <vue-material-icon name="search" size="20" />
-    </button>
-
     <RepositoriesList
       :class="$style.suggestions"
       v-if="focus && suggestions.length"
@@ -80,27 +76,23 @@ export default {
 .wrapper
   display flex
   position relative
-
-.input
   background-color #fafbfc
   border-radius 3px
-  padding 5px 10px
   border 1px solid #d1d5da
-  margin-right 10px
+  padding 10px 15px
 
-.button
-  padding 5px 10px
-  border-radius 3px
-  background-color #e8e8e8
-  border 1px solid #b9b3b3
-  color #666
-  display flex
-  align-items center
+.input
+  border none
+  background transparent
+
+  &:focus
+    outline none
 
 .suggestions
   position absolute
   z-index 1000
   top 100%
+  left 0
   width 100%
   margin-top 10px
   background white
