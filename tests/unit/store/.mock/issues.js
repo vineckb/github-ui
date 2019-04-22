@@ -1,5 +1,3 @@
-import sinon from 'sinon';
-
 export const state = {
   item: {},
 

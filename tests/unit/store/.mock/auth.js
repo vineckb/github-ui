@@ -1,5 +1,3 @@
-import sinon from 'sinon';
-
 export default {
   namespaced: true,
 

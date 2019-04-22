@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import sinon from 'sinon';
 
 import auth from './auth';
 import issues from './issues';
