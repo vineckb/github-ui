@@ -18,7 +18,14 @@ const urlEncodedToObject = data => {
   return obj;
 };
 
-const getToken = () => JSON.parse(localStorage.getItem('vuex')).auth.token;
+const getToken = () => {
+  const stored = localStorage.getItem('vuex')
+  if (!stored) return false;
+
+  const state = JSON.parse(stored);
+
+  return state.auth.token;
+};
 
 export default {
   authorizeUrl: `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo`,

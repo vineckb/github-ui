@@ -23,12 +23,8 @@ export default {
     },
 
     loading() {
-      return this.$store.state.loading > 0;
+      return this.$store.state.loading;
     }
-  },
-
-  created () {
-    this.$store.commit('resetLoading');
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Button bordered @click="toggleLock">
+  <button type="button" @click="toggleLock">
     <vue-material-icon :name="issue.locked ? 'vpn_key' : 'lock'" size="20" />
 
     <span class="buttonText" v-if="loading">...</span>
@@ -7,15 +7,11 @@
     <span class="buttonText" v-if="!loading">
       {{ issue.locked ? 'Unlock' : 'Lock' }}
     </span>
-  </Button>
+  </button>
 </template>
 
 <script>
-import Button from '@/components/Button';
-
 export default {
-  components: { Button },
-
   data () {
     return {
       loading: false
@@ -23,6 +19,11 @@ export default {
   },
 
   props: {
+    repository: {
+      type: String,
+      required: true
+    },
+
     issue: {
       type: Object,
       required: true
@@ -32,7 +33,7 @@ export default {
   methods: {
     toggleLock() {
       this.loading = true;
-      const { repository } = this.repository;
+      const { repository } = this;
       const { number } = this.issue;
 
       if (!this.issue.locked) {
@@ -53,6 +54,14 @@ export default {
 button
   width 100px
   height 36px
+  cursor pointer
+  background none
+  border 1px solid #ccc
+  border-radius 5px
+  padding 5px 10px
+  display flex
+  align-items center
+  color inherit
 
 .loading
   justify-content center

@@ -16,13 +16,12 @@ import moment from 'moment';
 export default {
   components: { LockButton },
 
-  data() {
-    return {
-      repository: this.$route.params.repository
-    }
-  },
-
   props: {
+    repository: {
+      type: String,
+      required: true
+    },
+
     issue: {
       type: Object,
       required: true

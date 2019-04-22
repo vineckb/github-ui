@@ -1,26 +1,18 @@
 <template>
   <div :class="$style.wrapper">
     <h1 :class="$style.title">Issues</h1>
-    <IssuesList :issues="issues" />
+    <IssuesList :repository="repository" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import IssuesList from '@/components/Issues/List.vue';
 
 export default {
   components: { IssuesList },
 
-  computed: mapState({
-    issues: state => state.issues.list
-  }),
-
-  mounted() {
-    const repository = this.$route.params.repository;
-    const { commit, dispatch } = this.$store;
-    commit('loading')
-    dispatch('issues/fetchList', repository).then(() => commit('loaded'));
+  data() {
+    return { repository: this.$route.params.repository }
   }
 };
 </script>

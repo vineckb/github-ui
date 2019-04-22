@@ -1,4 +1,4 @@
-# citartech-frontend
+# citar3
 
 ## Project setup
 ```
