@@ -14,6 +14,7 @@ export default {
   components: { Button },
 
   data () {
+    console.log(api.auth.authorizeUrl)
     return {
       authorizeUrl: api.auth.authorizeUrl
     }

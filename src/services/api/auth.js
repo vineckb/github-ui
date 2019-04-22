@@ -1,8 +1,13 @@
 import axios from 'axios';
 import github, { config } from './github';
 
-const clientId = '071225bb41f4ee451f9d';
-const clientSecret = '2c333b7e1ec1b019eec3a3d4678b5b5310bcdf97';
+let clientId = '071225bb41f4ee451f9d';
+let clientSecret = '2c333b7e1ec1b019eec3a3d4678b5b5310bcdf97';
+
+if (window.location.hostname !== 'localhost') {
+  clientId = '340bb03e7de2983aad44';
+  clientSecret = 'f246b355f7e7afa6168c21e4b01973b7ce5b5cd7';
+}
 
 // transform response because no working pass headers
 // input: access_token=:access_token&scope=&token_type=bearer
