@@ -56,8 +56,11 @@ export default {
 
 .title
   font-weight bold
+  text-align left
+  padding-right 20px
 
 .subtitle
   font-size 14px
   color #999
+  padding-right 20px
 </style>

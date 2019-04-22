@@ -1,5 +1,7 @@
 <template>
-  <Button primary @click="handleClick">Create issue</Button>
+  <Button primary small @click="handleClick">
+    Create issue
+  </Button>
 </template>
 
 <script>

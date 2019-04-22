@@ -2,7 +2,7 @@
   <div :class="$style.header">
     <div :class="$style.wrapper">
       <UserCard />
-      <RepositorySelector />
+      <RepositorySelector v-if="$mq === 'tablet' || $mq === 'desktop'" />
       <CreateIssueButton v-if="!!repository" :repository="repository" />
       <LogoutButton />
     </div>

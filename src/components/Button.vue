@@ -4,7 +4,8 @@
       [$style.button]: true,
       [$style.primary]: primary,
       [$style.bordered]: bordered,
-      [$style.rounded]: rounded
+      [$style.rounded]: rounded,
+      [$style.small]: small
     }"
     :type="type"
     @click="handleClick">
@@ -31,7 +32,9 @@ export default {
 
     bordered: Boolean,
 
-    rounded: Boolean
+    rounded: Boolean,
+
+    small: Boolean
   },
 
   methods: {
@@ -53,6 +56,13 @@ export default {
   cursor pointer
   background none
   border none
+  display flex
+  align-items center
+  justify-content center
+  outline none
+
+.small
+  padding 5px 10px
 
 .primary
   background linear-gradient(-180deg,#34d058,#28a745 90%)
@@ -74,9 +84,6 @@ export default {
   color inherit
 
 .rounded
-  display flex
-  align-items center
-  justify-content center
   width 30px
   height 30px
   border 2px solid #999

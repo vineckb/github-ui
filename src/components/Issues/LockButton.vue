@@ -1,5 +1,5 @@
 <template>
-  <button type="button" @click="toggleLock">
+  <button type="button" @click="toggleLock" :class="{ mobile: $mq != 'desktop'}">
     <vue-material-icon :name="issue.locked ? 'vpn_key' : 'lock'" size="20" />
 
     <span class="buttonText" v-if="loading">...</span>
@@ -53,6 +53,7 @@ export default {
 <style lang="stylus" scoped>
 button
   width 100px
+  min-width 100px
   height 36px
   cursor pointer
   background none
@@ -62,6 +63,13 @@ button
   display flex
   align-items center
   color inherit
+
+  &.mobile
+    width auto
+    min-width 40px
+
+    .buttonText
+      display none
 
 .loading
   justify-content center

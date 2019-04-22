@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.card" @click="$router.push('/')">
     <img :src="user.avatar" :class="$style.image" alt="">
-    <div :class="$style.heading">
+    <div :class="$style.heading" v-if="$mq === 'desktop'">
       <p :class="$style.name">{{ user.name }}</p>
       <p :class="$style.username">@{{ user.username }}</p>
     </div>
@@ -31,11 +31,11 @@ export default {
   width 30px
   height 30px
   border-radius 50%
-  margin-right 10px
 
 .heading
   display flex
   flex-direction column
+  margin-left 10px
 
 .name
   font-weight bold

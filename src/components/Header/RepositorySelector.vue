@@ -74,16 +74,13 @@ export default {
 
 <style lang="stylus" module>
 .wrapper
-  display flex
   position relative
-  background-color #fafbfc
-  border-radius 3px
-  border 1px solid #d1d5da
-  padding 10px 15px
 
 .input
-  border none
-  background transparent
+  padding 10px 15px
+  background #fafbfc
+  border 1px solid #d1d5da
+  border-radius 3px
 
   &:focus
     outline none
