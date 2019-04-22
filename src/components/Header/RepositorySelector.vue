@@ -44,8 +44,8 @@ export default {
 
   methods: {
     submit() {
-      this.$router.go(`/${this.repository}/issues`);
-      this.hideSuggestions()
+      this.$router.push(`/${this.repository}/issues`);
+      this.hideSuggestions();
     },
 
     handleFocus() {
@@ -66,6 +66,7 @@ export default {
 
     selectRepository(repository) {
       this.repository = repository;
+      console.log(repository);
       this.submit();
     }
   }
