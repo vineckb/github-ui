@@ -18,8 +18,9 @@ export default {
 
   mounted() {
     const repository = this.$route.params.repository;
-    this.$store.dispatch('issues/fetchList', repository);
-    this.issues;
+    const { commit, dispatch } = this.$store;
+    commit('loading')
+    dispatch('issues/fetchList', repository).then(() => commit('loaded'));
   }
 };
 </script>

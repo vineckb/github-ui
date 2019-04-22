@@ -40,12 +40,13 @@ export default {
   methods: {
     submit() {
       const { title, body, repository } = this;
+      const { commit, dispatch } = this.$store;
 
-      this.$store
-        .dispatch('issues/create', { title, body, repository })
-        .then(({ number }) => {
-          this.$router.push(`/${repository}/issues/${number}`)
-        });
+      commit('loading');
+      dispatch('issues/create', { title, body, repository }).then(({ number }) => {
+        commit('loaded');
+        this.$router.push(`/${repository}/issues/${number}`);
+      });
     }
   }
 }

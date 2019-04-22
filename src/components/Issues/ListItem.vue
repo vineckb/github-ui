@@ -5,7 +5,7 @@
       <span :class="$style.subtitle">Created {{createdAt(issue.created_at)}}</span>
     </a>
 
-    <LockButton :issue="issue" />
+    <LockButton :issue="issue" :repository="repository" />
   </li>
 </template>
 

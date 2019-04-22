@@ -21,9 +21,13 @@ export default {
 
   created () {
     const { code } = this.$route.query;
+    const { commit, dispatch } = this.$store
+
     if (code) {
-      this.$store.dispatch('auth/auth', code).then(() => {
-        this.$router.push('/')
+      commit('loading');
+      dispatch('auth/auth', code).then(() => {
+        commit('loaded');
+        this.$router.push('/');
       })
     }
   }

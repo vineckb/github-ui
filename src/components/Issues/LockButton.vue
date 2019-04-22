@@ -32,7 +32,7 @@ export default {
   methods: {
     toggleLock() {
       this.loading = true;
-      const { repository } = this.$route.params;
+      const { repository } = this.repository;
       const { number } = this.issue;
 
       if (!this.issue.locked) {

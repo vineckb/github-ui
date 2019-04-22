@@ -8,7 +8,7 @@
 
         <span :class="$style.titleText">{{ issue.title }}</span>
 
-        <LockButton :issue="issue" :class="$style.button" />
+        <LockButton :issue="issue" :repository="repository" :class="$style.button" />
       </h1>
       <p :class="$style.subtitle"></p>
     </div>
@@ -36,7 +36,10 @@ export default {
 
   created() {
     const { repository, number } = this;
-    this.$store.dispatch('issues/fetchItem', { repository, number });
+    const { dispatch, commit } = this.$store;
+
+    commit('loading');
+    dispatch('issues/fetchItem', { repository, number }).then(() => commit('loaded'));
   }
 }
 </script>
