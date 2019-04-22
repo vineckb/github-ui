@@ -1,11 +1,15 @@
 <template>
-  <ul :class="$style.list">
-    <ListItem
-      v-for="item in issues"
-      :key="item.id"
-      :repository="repository"
-      :issue="item" />
-  </ul>
+  <div>
+    <ul :class="$style.list" v-if="issues.length">
+      <ListItem
+        v-for="item in issues"
+        :key="item.id"
+        :repository="repository"
+        :issue="item" />
+    </ul>
+
+    <h3 v-if="!issues.length">No issues, create one.</h3>
+  </div>
 </template>
 
 <script>

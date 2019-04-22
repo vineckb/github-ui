@@ -63,6 +63,7 @@ button
   display flex
   align-items center
   color inherit
+  outline none
 
   &.mobile
     width auto

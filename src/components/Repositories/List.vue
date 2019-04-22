@@ -6,7 +6,6 @@
 
 <script>
 import ListItem from './ListItem';
-import { mapState } from 'vuex';
 
 export default {
   components: { ListItem },

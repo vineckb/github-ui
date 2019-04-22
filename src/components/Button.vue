@@ -41,7 +41,7 @@ export default {
     handleClick() {
       if (!this.href) return this.$emit('click');
 
-      if (this.href.match(/^https?\:\/\//)) {
+      if (this.href.match(/^https?:\/\//)) {
         window.location = this.href;
       } else {
         this.$router.push(this.href);
