@@ -1,4 +1,4 @@
-# Citar Tech / Front end
+# Github UI
 
 ## Project setup
 ```
